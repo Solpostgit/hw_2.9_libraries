@@ -15,8 +15,8 @@ public class Employee {
     public Employee(String surname, String firstName, int department, double salary) {
 
         this.id = count;
-        this.surname = StringUtils.capitalize(surname);
-        this.firstName = StringUtils.capitalize(firstName);
+        this.surname = StringUtils.capitalize(surname.toLowerCase());
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
         this.department = department;
         this.salary = salary;
         count++;
