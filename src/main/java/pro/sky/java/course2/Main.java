@@ -7,23 +7,21 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println(StringUtils.capitalize("Yuri"));
         Employee[] storage = new Employee[10]; //поле типа Employee[10]
 
-        storage[0] = new Employee("Ivanov", "Ivan", "Ivanovich", 3, 91000);
-        storage[1] = new Employee("Petrov", "Petr", "Petrovich", 2, 100000);
-        storage[2] = new Employee("Sidorov", "Denis", "Sergeevich", 4, 95000);
-        storage[3] = new Employee("Ivanova", "Anna", "Borisovna", 1, 93000);
-        storage[4] = new Employee("Svetlaya", "Irina", "Pavlovna", 5, 90000);
-        storage[5] = new Employee("Borisov", "Maksim", "Alekseevich", 3, 97000);
-        storage[6] = new Employee("Alekseev", "Sergey", "Nikolaevich", 1, 92000);
-        storage[7] = new Employee("Maksimova", "Alla", "Nikolaevna", 2, 94000);
-        storage[8] = new Employee("Nikolaeva", "Olga", "Anatolyevna", 4, 91000);
-        storage[9] = new Employee("Denisov", "Pavel", "Ivanovich", 5, 98000);
+        storage[0] = new Employee("Ivanov", "Ivan", 3, 91000);
+        storage[1] = new Employee("Petrov", "Petr", 2, 100000);
+        storage[2] = new Employee("Sidorov", "Denis", 4, 95000);
+        storage[3] = new Employee("Ivanova", "Anna", 1, 93000);
+        storage[4] = new Employee("Svetlaya", "Irina", 5, 90000);
+        storage[5] = new Employee("Borisov", "Maksim", 3, 97000);
+        storage[6] = new Employee("Alekseev", "Sergey", 1, 92000);
+        storage[7] = new Employee("Maksimova", "Alla", 2, 94000);
+        storage[8] = new Employee("Nikolaeva", "Olga", 4, 91000);
+        storage[9] = new Employee("Denisov", "Pavel", 5, 98000);
 
         //Проверка имени и фамилиидо
-        if ()
-        System.out.println(StringUtils.);
+
 
         System.out.println();
         System.out.println(Arrays.toString(storage)); //список сотрудников со всеми имеющимися данными
@@ -125,7 +123,7 @@ public class Main {
     public static void listEmployeeDepartment(Employee[] arr, int department) {
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].getDepartment() == department) {
-                System.out.println("ID:" + arr[i].getId() + " " + arr[i].getSurname() + " " + arr[i].getName() + " " + arr[i].getPatronymic() + " " + arr[i].getSalary());
+                System.out.println("ID:" + arr[i].getId() + " " + arr[i].getSurname() + " " + arr[i].getFirstName() + " " + arr[i].getSalary());
                 //все сотрудники отдела
             }
         }
@@ -135,13 +133,13 @@ public class Main {
         System.out.println("Зарплата меньше " + indexSalary);
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].getSalary() < indexSalary) { //зарплата меньше indexSalary
-                System.out.println("ID:" + arr[i].getId() + " " + arr[i].getSurname() + " " + arr[i].getName() + " " + arr[i].getPatronymic() + " " + arr[i].getSalary());
+                System.out.println("ID:" + arr[i].getId() + " " + arr[i].getSurname() + " " + arr[i].getFirstName() + " " + arr[i].getSalary());
             }
         }
         System.out.println("Зарплата больше " + indexSalary);
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].getSalary() >= indexSalary) { //зарплата больше indexSalary
-                System.out.println("ID:" + arr[i].getId() + " " + arr[i].getSurname() + " " + arr[i].getName() + " " + arr[i].getPatronymic() + " " + arr[i].getSalary());
+                System.out.println("ID:" + arr[i].getId() + " " + arr[i].getSurname() + " " + arr[i].getFirstName() + " " + arr[i].getSalary());
             }
         }
     }
