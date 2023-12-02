@@ -18,35 +18,35 @@ public class EmployeeServiceImpl implements EmployeeService{
     private final Map<String, Employee> storage = new HashMap<>();
 
     @Override
-    public Employee addEmployee(String surname, String firstName, int department, int salary) {
-        validateNames(surname, firstName);
+    public Employee addEmployee(String firstName, String lastName, int salary, int department) {
+        validateNames(firstName, lastName);
 
-        Employee employee = new Employee(surname, firstName, department, salary);
+        Employee employee = new Employee(firstName, lastName, salary, department);
 
-        if(storage.containsKey(getKey(surname, firstName))) {
-            throw new EmployeeAlreadyExistException("Employee " + surname + " " + firstName + " already exists");
+        if(storage.containsKey(getKey(firstName, lastName))) {
+            throw new EmployeeAlreadyExistException("Employee " + firstName + " " + lastName + " already exists");
         }
-        storage.put(getKey(surname, firstName), employee);
+        storage.put(getKey(firstName, lastName), employee);
 
         return employee;
     }
 
     @Override
-    public Employee removeEmployee(String surname, String firstName) {
-        validateNames(surname, firstName);
-        if (!storage.containsKey(getKey(surname, firstName))) {
-            throw new EmployeeNotFoundException("Employee " + surname + " " + firstName + " not found");
+    public Employee removeEmployee(String firstName, String lastName) {
+        validateNames(firstName, lastName);
+        if (!storage.containsKey(getKey(firstName, lastName))) {
+            throw new EmployeeNotFoundException("Employee " + firstName + " " + lastName + " not found");
         }
-        return storage.remove(getKey(surname, firstName));
+        return storage.remove(getKey(firstName, lastName));
     }
 
     @Override
-    public Employee findEmployee(String surname, String firstName) {
-        validateNames(surname, firstName);
-        if (!storage.containsKey(getKey(surname, firstName))) {
-            throw new EmployeeNotFoundException("Employee " + surname + " " + firstName + " not found");
+    public Employee findEmployee(String firstName, String lastName) {
+        validateNames(firstName, lastName);
+        if (!storage.containsKey(getKey(firstName, lastName))) {
+            throw new EmployeeNotFoundException("Employee " + firstName + " " + lastName + " not found");
         }
-        return storage.get(getKey(surname, firstName));
+        return storage.get(getKey(firstName, lastName));
     }
 
     @Override
@@ -54,8 +54,8 @@ public class EmployeeServiceImpl implements EmployeeService{
         return Collections.unmodifiableCollection(storage.values());
     }
 
-    private String getKey(String surname, String firstName) {
-        return (surname + "_" + firstName).toLowerCase();
+    private String getKey(String firstName, String lastName) {
+        return (firstName + "_" + lastName).toLowerCase();
     }
 
     private void validateNames(String... names) {

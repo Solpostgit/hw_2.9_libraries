@@ -5,50 +5,32 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Objects;
 
 public class Employee {
-    static int count = 1;
-    private int id;
-    private String surname;
-    private String firstName;
-    private int department;
-    private double salary;
+    private final String firstName;
+    private final String lastName;
+    private final int salary;
+    private final int department;
 
-    public Employee(String surname, String firstName, int department, double salary) {
-
-        this.id = count;
-        this.surname = StringUtils.capitalize(surname.toLowerCase());
+    public Employee(String firstName, String lastName, int salary, int department) {
         this.firstName = StringUtils.capitalize(firstName.toLowerCase());
-        this.department = department;
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.salary = salary;
-        count++;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public String getSurname() {
-        return surname;
+        this.department = department;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-
-    public int getDepartment() {
-        return department;
+    public String getLastName() {
+        return lastName;
     }
 
-    public double getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setDepartment(int department) {
-        this.department = department;
-    }
-
-    public void setSalary(double salary) {
-        this.salary = salary;
+    public int getDepartment() {
+        return department;
     }
 
     @Override
@@ -56,15 +38,21 @@ public class Employee {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Employee employee = (Employee) object;
-        return department == employee.department && Double.compare(salary, employee.salary) == 0 && Objects.equals(surname, employee.surname) && Objects.equals(firstName, employee.firstName);
+        return salary == employee.salary && department == employee.department && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(surname, firstName, department, salary);
+        return Objects.hash(firstName, lastName, salary, department);
     }
 
+    @Override
     public String toString() {
-        return "ID:" + this.id + " " + this.surname + " " + this.firstName + " " + " Отдел " + this.department + " Зарплата " + this.salary;
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", department=" + department +
+                '}';
     }
 }
