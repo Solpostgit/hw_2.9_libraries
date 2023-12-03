@@ -51,7 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public Collection<Employee> findAll() {
-        return Collections.unmodifiableCollection(storage.values());
+        return Collections.unmodifiableCollection(storage.values()); //было return Collections.unmodifiableCollection(storage.values());
     }
 
     private String getKey(String firstName, String lastName) {
