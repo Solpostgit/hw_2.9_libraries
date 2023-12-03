@@ -1,58 +1,58 @@
 package pro.sky.java.course2;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Objects;
+
 public class Employee {
-    static int count = 1;
-    private int id;
-    private String surname;
-    private String name;
-    private String patronymic;
-    private int department;
-    private double salary;
+    private final String firstName;
+    private final String lastName;
+    private final int salary;
+    private final int department;
 
-    public Employee(String surname, String name, String patronymic, int department, double salary) {
-
-        this.id = count;
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.department = department;
+    public Employee(String firstName, String lastName, int salary, int department) {
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.salary = salary;
-        count++;
+        this.department = department;
     }
 
-    public int getId() {
-        return id;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPatronymic() {
-        return patronymic;
+    public int getSalary() {
+        return salary;
     }
 
     public int getDepartment() {
         return department;
     }
 
-    public double getSalary() {
-        return salary;
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Employee employee = (Employee) object;
+        return salary == employee.salary && department == employee.department && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
 
-    public void setDepartment(int department) {
-        this.department = department;
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, salary, department);
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
-
+    @Override
     public String toString() {
-        return "ID:" + this.id + " " + this.surname + " " + this.name + " " + this.patronymic + " " + " Отдел " + this.department + " Зарплата " + this.salary;
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", department=" + department +
+                '}';
     }
 }
